@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+node_modules/
+dist/
+datasets/*
+!datasets/README.md
+models/*
+!models/README.md
+*.db
+*.sqlite3
+.DS_Store
