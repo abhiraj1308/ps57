@@ -1,26 +1,55 @@
 version: "3.9"
+
 services:
+
   backend:
     build: ./backend
-    ports: ["8000:8000"]
+    ports:
+      - "8000:8000"
+
     environment:
       - DATABASE_URL=postgresql://ps57:ps57pass@db:5432/ps57
-    depends_on: [db]
+
+    depends_on:
+      db:
+        condition: service_healthy
+
     volumes:
       - ./backend:/app
       - ./ai:/app/ai
-      - ./models:/app/models
+      - ./models:/app/model_weights
+
+
   frontend:
     build: ./frontend
-    ports: ["5173:5173"]
-    depends_on: [backend]
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+
   db:
     image: postgres:16
+
     environment:
       - POSTGRES_USER=ps57
       - POSTGRES_PASSWORD=ps57pass
       - POSTGRES_DB=ps57
-    volumes: [pgdata:/var/lib/postgresql/data]
-    ports: ["5432:5432"]
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+    ports:
+      - "5432:5432"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ps57 -d ps57"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+
 volumes:
   pgdata:

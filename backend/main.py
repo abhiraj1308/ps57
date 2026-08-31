@@ -1,15 +1,24 @@
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
-from backend.db import Base, engine, get_db
-from backend.models.detection import DetectionModel
-from backend.schemas import Detection
+from db import Base, engine, get_db
+from models.detection import Detection
+from schemas import DetectionCreate, DetectionResponse
+
+
+Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(title="PS57 API")
 
-
-Base.metadata.create_all(bind=engine)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health")
@@ -17,32 +26,43 @@ def health():
     return {"status": "ok"}
 
 
-@app.post("/detections")
+@app.post(
+    "/detections",
+    response_model=DetectionResponse
+)
 def create_detection(
-    detection: Detection,
+    detection: DetectionCreate,
     db: Session = Depends(get_db)
 ):
-    db_detection = DetectionModel(
-        detection_id=detection.detection_id,
-        image_id=detection.image_id,
-        class_name=detection.class_name.value,
-        ai_confidence=detection.ai_confidence,
-        final_confidence=detection.final_confidence,
-        bbox=detection.bbox.model_dump(),
-        priority=detection.priority.value if detection.priority else None,
-        status=detection.status.value,
+    new_detection = Detection(
+        class_name=detection.class_name,
+        confidence=detection.confidence,
         latitude=detection.latitude,
         longitude=detection.longitude,
-        estimated_width_m=detection.estimated_width_m,
-        estimated_height_m=detection.estimated_height_m,
-        timestamp=detection.timestamp,
+        width=detection.width,
+        height=detection.height,
+        status=detection.status,
+        priority=detection.priority,
     )
 
-    db.add(db_detection)
+    db.add(new_detection)
     db.commit()
-    db.refresh(db_detection)
+    db.refresh(new_detection)
 
-    return {
-        "status": "success",
-        "detection": detection
-    }
+    return new_detection
+
+
+@app.get(
+    "/detections",
+    response_model=list[DetectionResponse]
+)
+def get_detections(
+    db: Session = Depends(get_db)
+):
+    detections = (
+        db.query(Detection)
+        .order_by(Detection.id.desc())
+        .all()
+    )
+
+    return detections

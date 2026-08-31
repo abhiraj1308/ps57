@@ -1,62 +1,30 @@
-from datetime import datetime
-from enum import Enum
-from typing import Optional
-
 from pydantic import BaseModel, Field
 
 
-class DetectionClass(str, Enum):
-    GHOST_NET = "ghost_net"
-    PIPE = "pipe"
-    CYLINDER = "cylinder"
-    SHIPWRECK = "shipwreck"
-    OTHER_DEBRIS = "other_debris"
-    UNKNOWN = "unknown"
+class DetectionCreate(BaseModel):
+    class_name: str = Field(..., min_length=1)
 
-
-class DetectionPriority(str, Enum):
-    LOW = "LOW"
-    MEDIUM = "MEDIUM"
-    HIGH = "HIGH"
-    CRITICAL = "CRITICAL"
-
-
-class DetectionStatus(str, Enum):
-    DETECTED = "detected"
-    VALIDATED = "validated"
-    REJECTED = "rejected"
-    REVIEW_REQUIRED = "review_required"
-
-
-class BoundingBox(BaseModel):
-    x1: float = Field(ge=0)
-    y1: float = Field(ge=0)
-    x2: float = Field(ge=0)
-    y2: float = Field(ge=0)
-
-
-class Detection(BaseModel):
-    detection_id: str
-    image_id: str
-
-    class_name: DetectionClass
-
-    ai_confidence: float = Field(ge=0.0, le=1.0)
-    final_confidence: Optional[float] = Field(
-        default=None,
-        ge=0.0,
-        le=1.0
+    confidence: float = Field(
+        ...,
+        ge=0,
+        le=1
     )
 
-    bbox: BoundingBox
+    latitude: float | None = None
 
-    priority: Optional[DetectionPriority] = None
-    status: DetectionStatus = DetectionStatus.DETECTED
+    longitude: float | None = None
 
-    latitude: Optional[float] = Field(default=None, ge=-90, le=90)
-    longitude: Optional[float] = Field(default=None, ge=-180, le=180)
+    width: float | None = None
 
-    estimated_width_m: Optional[float] = Field(default=None, ge=0)
-    estimated_height_m: Optional[float] = Field(default=None, ge=0)
+    height: float | None = None
 
-    timestamp: Optional[datetime] = None
+    status: str = "new"
+
+    priority: str = "medium"
+
+
+class DetectionResponse(DetectionCreate):
+    id: int
+
+    class Config:
+        from_attributes = True

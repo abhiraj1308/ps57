@@ -3,25 +3,14 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "sqlite:///./dev.db"
-)
-
-
-connect_args = (
-    {"check_same_thread": False}
-    if DATABASE_URL.startswith("sqlite")
-    else {}
-)
-
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./dev.db")
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args=connect_args
+    connect_args={"check_same_thread": False}
+    if "sqlite" in DATABASE_URL
+    else {}
 )
-
 
 SessionLocal = sessionmaker(
     autocommit=False,
@@ -29,13 +18,11 @@ SessionLocal = sessionmaker(
     bind=engine
 )
 
-
 Base = declarative_base()
 
 
 def get_db():
     db = SessionLocal()
-
     try:
         yield db
     finally:
