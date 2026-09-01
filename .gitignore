@@ -133,3 +133,18 @@ docs/_build/
 # Local configuration
 # ------------------------------
 *.local
+# Local Python environment
+venv/
+.venv/
+
+# Local database
+dev.db
+*.db
+
+# ML training outputs and model weights
+runs/
+
+# Large datasets
+datasets/raw/
+datasets/processed/
+
