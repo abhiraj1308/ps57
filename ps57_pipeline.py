@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
-import sys
 
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -10,22 +9,15 @@ from detection_intelligence.schemas import (
     SSSAnomalyDetection,
 )
 
+from backend.db import SessionLocal
+from backend.models.detection import Detection
+
 
 # ============================================================
-# PROJECT / BACKEND PATHS
+# PROJECT PATHS
 # ============================================================
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-
-BACKEND_DIR = PROJECT_ROOT / "backend"
-
-# Allow the root-level pipeline to import backend modules.
-if str(BACKEND_DIR) not in sys.path:
-    sys.path.insert(0, str(BACKEND_DIR))
-
-
-from db import SessionLocal
-from models.detection import Detection
 
 
 # ============================================================
@@ -314,9 +306,11 @@ def analyze_sss(
     )
 
     print("\n" + "=" * 70)
+
     print(
         "PS57 SIDE-SCAN SONAR ANALYSIS"
     )
+
     print("=" * 70)
 
     print(

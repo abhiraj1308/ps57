@@ -1,3 +1,3 @@
-from models.detection import Detection
+from .detection import Detection
 
 __all__ = ["Detection"]
