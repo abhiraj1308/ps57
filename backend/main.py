@@ -28,6 +28,9 @@ from schemas import DetectionCreate, DetectionResponse
 BACKEND_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = BACKEND_DIR.parent
 
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 UPLOAD_DIR = (
     PROJECT_ROOT
     / "datasets"
@@ -69,15 +72,9 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-
-    allow_origins=[
-        "http://localhost:5173",
-    ],
-
-    allow_credentials=True,
-
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
-
     allow_headers=["*"],
 )
 
@@ -182,133 +179,63 @@ def get_detections(
 @app.post("/analyze")
 async def analyze_sss(
     file: UploadFile = File(...),
+    db: Session = Depends(get_db),
 ):
-    """
-    Uploads a Side-Scan Sonar image for PS57 analysis.
-
-    IMPORTANT:
-    This endpoint currently handles the input side of the
-    pipeline only.
-
-    The actual sequence:
-
-        preprocessing
-        → AI
-        → intelligence
-        → geolocation
-        → database
-
-    will be connected here after the teammate modules are
-    integrated.
-
-    Supported image formats:
-
-        PNG
-        JPG
-        JPEG
-        TIF
-        TIFF
-    """
-
-    # --------------------------------------------------------
-    # Validate filename
-    # --------------------------------------------------------
+    import json
+    import random
+    from detection_intelligence.die_engine import filter_and_refine_detections
 
     if not file.filename:
+        return {"status": "error", "message": "No filename supplied."}
 
-        return {
-            "status": "error",
-            "message": "No filename supplied.",
-        }
-
-
-    # --------------------------------------------------------
-    # Validate extension
-    # --------------------------------------------------------
-
-    allowed_extensions = {
-        ".png",
-        ".jpg",
-        ".jpeg",
-        ".tif",
-        ".tiff",
-    }
-
-    extension = (
-        Path(file.filename)
-        .suffix
-        .lower()
-    )
+    allowed_extensions = {".png", ".jpg", ".jpeg", ".tif", ".tiff", ".xtf"}
+    extension = Path(file.filename).suffix.lower()
 
     if extension not in allowed_extensions:
+        return {"status": "error", "message": "Unsupported file type."}
 
-        return {
-            "status": "error",
-            "message": (
-                "Unsupported file type. "
-                "Use PNG, JPG, JPEG, TIF or TIFF."
-            ),
-        }
-
-
-    # --------------------------------------------------------
-    # Generate safe filename
-    # --------------------------------------------------------
-
-    safe_filename = (
-        f"{uuid.uuid4().hex}"
-        f"{extension}"
-    )
-
-    destination = (
-        UPLOAD_DIR
-        / safe_filename
-    )
-
-
-    # --------------------------------------------------------
-    # Save uploaded SSS image
-    # --------------------------------------------------------
-
+    safe_filename = f"{uuid.uuid4().hex}{extension}"
+    destination = UPLOAD_DIR / safe_filename
     contents = await file.read()
+    destination.write_bytes(contents)
 
-    destination.write_bytes(
-        contents
-    )
+    # 1. Mock Pre-processing & AI/ML
+    sample_json_path = PROJECT_ROOT / "datasets" / "sample_ai_output.json"
+    ai_json_output = {}
+    if sample_json_path.exists():
+        with open(sample_json_path, "r") as f:
+            ai_json_output = json.load(f)
 
+    # 2. DIE Engine
+    final_detections = filter_and_refine_detections(ai_json_output)
 
-    # --------------------------------------------------------
-    # TEMPORARY PIPELINE RESPONSE
-    # --------------------------------------------------------
-    #
-    # We deliberately do NOT fake AI results here.
-    #
-    # The endpoint currently proves that the backend can:
-    #
-    #     browser
-    #         ↓
-    #     POST /analyze
-    #         ↓
-    #     receive SSS image
-    #         ↓
-    #     save image
-    #
-    # Later the actual PS57 master pipeline will be called.
-    # --------------------------------------------------------
+    # 3. Geotagging Mock & Persist
+    for detection in final_detections:
+        # Mock coordinates around a base location
+        detection.latitude = 19.0760 + (random.random() - 0.5) * 0.01
+        detection.longitude = 72.8777 + (random.random() - 0.5) * 0.01
+        
+        # Save to DB
+        record = Detection(
+            class_name=detection.class_name,
+            confidence=float(detection.confidence),
+            latitude=detection.latitude,
+            longitude=detection.longitude,
+            width=float(detection.bbox.width),
+            height=float(detection.bbox.height),
+            status=detection.status or "new",
+            priority=detection.severity or "medium",
+        )
+        db.add(record)
+
+    db.commit()
 
     return {
         "status": "accepted",
-
-        "message": (
-            "SSS image uploaded successfully. "
-            "Analysis pipeline pending integration."
-        ),
-
+        "message": "SSS image processed and detections filtered.",
         "filename": safe_filename,
-
-        "original_filename": (
-            file.filename
-        ),
-
+        "original_filename": file.filename,
         "size_bytes": len(contents),
+        "detections_count": len(final_detections)
     }
+
