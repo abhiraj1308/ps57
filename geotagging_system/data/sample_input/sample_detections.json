@@ -1,0 +1,9 @@
+{
+  "detections": [
+    {"detection_id": "DET_001", "bbox_pixels": [800, 1200, 1000, 1250], "confidence": 0.89, "class_label": "ghost_net", "ping_range": [1200, 1250]},
+    {"detection_id": "DET_002", "bbox_pixels": [1500, 2000, 1700, 2080], "confidence": 0.76, "class_label": "pipe", "ping_range": [2000, 2080]},
+    {"detection_id": "DET_003", "bbox_pixels": [500, 3000, 900, 3200], "confidence": 0.92, "class_label": "wreck", "ping_range": [3000, 3200]},
+    {"detection_id": "DET_004", "bbox_pixels": [1800, 4500, 1900, 4550], "confidence": 0.68, "class_label": "tire", "ping_range": [4500, 4550]},
+    {"detection_id": "DET_005", "bbox_pixels": [300, 6000, 700, 6150], "confidence": 0.81, "class_label": "ghost_net", "ping_range": [6000, 6150]}
+  ]
+}

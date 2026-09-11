@@ -1,0 +1,198 @@
+{
+  "mission_metadata": {
+    "survey_id": "SSS_2024_001",
+    "date": "2024-01-15",
+    "vessel": "RV_Surveyor",
+    "sonar_system": "Klein_System_3000",
+    "coordinate_system": "WGS84",
+    "operator": "Marine Survey Team",
+    "area_name": "Tampa Bay Survey Area",
+    "notes": null
+  },
+  "detections": [
+    {
+      "detection_id": "DET_001",
+      "timestamp": "2024-01-15T10:02:02.500000Z",
+      "classification": "ghost_net",
+      "confidence_score": 0.89,
+      "bounding_box_pixels": [
+        800.0,
+        1200.0,
+        1000.0,
+        1250.0
+      ],
+      "geolocation": {
+        "latitude": 27.801383384166265,
+        "longitude": -82.49858180463596,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 6.7
+      },
+      "dimensions_meters": {
+        "length_m": 10.289,
+        "width_m": 29.183,
+        "area_sq_meters": 300.263
+      },
+      "ping_range": [
+        1200,
+        1250
+      ],
+      "quality_flags": [
+        "GPS_VALID",
+        "ALTITUDE_VALID",
+        "SLANT_RANGE_CORRECTED",
+        "LAYBACK_APPLIED"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_002",
+      "timestamp": "2024-01-15T10:03:24Z",
+      "classification": "pipe",
+      "confidence_score": 0.76,
+      "bounding_box_pixels": [
+        1500.0,
+        2000.0,
+        1700.0,
+        2080.0
+      ],
+      "geolocation": {
+        "latitude": 27.801854647848796,
+        "longitude": -82.4967068807139,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 8.16
+      },
+      "dimensions_meters": {
+        "length_m": 16.462,
+        "width_m": 29.787,
+        "area_sq_meters": 490.356
+      },
+      "ping_range": [
+        2000,
+        2080
+      ],
+      "quality_flags": [
+        "GPS_VALID",
+        "ALTITUDE_VALID",
+        "SLANT_RANGE_CORRECTED",
+        "LAYBACK_APPLIED"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_003",
+      "timestamp": "2024-01-15T10:05:10Z",
+      "classification": "wreck",
+      "confidence_score": 0.92,
+      "bounding_box_pixels": [
+        500.0,
+        3000.0,
+        900.0,
+        3200.0
+      ],
+      "geolocation": {
+        "latitude": 27.804058807637485,
+        "longitude": -82.49605775866019,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 7.4
+      },
+      "dimensions_meters": {
+        "length_m": 41.156,
+        "width_m": 65.034,
+        "area_sq_meters": 2676.517
+      },
+      "ping_range": [
+        3000,
+        3200
+      ],
+      "quality_flags": [
+        "GPS_VALID",
+        "ALTITUDE_VALID",
+        "SLANT_RANGE_CORRECTED",
+        "LAYBACK_APPLIED"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_004",
+      "timestamp": "2024-01-15T10:07:32.500000Z",
+      "classification": "tire",
+      "confidence_score": 0.68,
+      "bounding_box_pixels": [
+        1800.0,
+        4500.0,
+        1900.0,
+        4550.0
+      ],
+      "geolocation": {
+        "latitude": 27.804870013450667,
+        "longitude": -82.49276505570162,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 8.9
+      },
+      "dimensions_meters": {
+        "length_m": 10.289,
+        "width_m": 14.763,
+        "area_sq_meters": 151.892
+      },
+      "ping_range": [
+        4500,
+        4550
+      ],
+      "quality_flags": [
+        "GPS_VALID",
+        "ALTITUDE_VALID",
+        "SLANT_RANGE_CORRECTED",
+        "LAYBACK_APPLIED"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_005",
+      "timestamp": "2024-01-15T10:10:07.500000Z",
+      "classification": "ghost_net",
+      "confidence_score": 0.81,
+      "bounding_box_pixels": [
+        300.0,
+        6000.0,
+        700.0,
+        6150.0
+      ],
+      "geolocation": {
+        "latitude": 27.808144661743253,
+        "longitude": -82.49187384835545,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 8.01
+      },
+      "dimensions_meters": {
+        "length_m": 30.867,
+        "width_m": 59.96,
+        "area_sq_meters": 1850.774
+      },
+      "ping_range": [
+        6000,
+        6150
+      ],
+      "quality_flags": [
+        "GPS_VALID",
+        "ALTITUDE_VALID",
+        "SLANT_RANGE_CORRECTED",
+        "LAYBACK_APPLIED"
+      ],
+      "sonar_image_id": null
+    }
+  ],
+  "summary": {
+    "total_detections": 5,
+    "detections_by_class": {
+      "ghost_net": 2,
+      "pipe": 1,
+      "wreck": 1,
+      "tire": 1
+    },
+    "survey_area_sq_km": 0.0,
+    "avg_confidence": 0.812,
+    "total_pings_processed": 6200
+  },
+  "qa_results": null,
+  "generated_at": "2026-09-03T18:58:34.155342Z"
+}

@@ -1,0 +1,9 @@
+{
+  "survey_id": "SSS_2024_001",
+  "date": "2024-01-15",
+  "vessel": "RV_Surveyor",
+  "sonar_system": "Klein_System_3000",
+  "coordinate_system": "WGS84",
+  "operator": "Marine Survey Team",
+  "area_name": "Tampa Bay Survey Area"
+}

@@ -1,0 +1,368 @@
+{
+  "mission_metadata": {
+    "survey_id": "E2E_TEST_001",
+    "date": "2024-01-15",
+    "vessel": "RV_Surveyor",
+    "sonar_system": "Klein_System_3000",
+    "coordinate_system": "WGS84",
+    "operator": null,
+    "area_name": null,
+    "notes": null
+  },
+  "detections": [
+    {
+      "detection_id": "DET_000",
+      "timestamp": "2024-01-15T10:01:16.050000Z",
+      "classification": "ghost_net",
+      "confidence_score": 0.68,
+      "bounding_box_pixels": [
+        419.0,
+        752.0,
+        483.0,
+        768.0
+      ],
+      "geolocation": {
+        "latitude": 27.801239206295122,
+        "longitude": -82.49978733854834,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 8.15
+      },
+      "dimensions_meters": {
+        "length_m": 3.292,
+        "width_m": 9.529,
+        "area_sq_meters": 31.373
+      },
+      "ping_range": [
+        754,
+        767
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_001",
+      "timestamp": "2024-01-15T10:01:20.550000Z",
+      "classification": "pipe",
+      "confidence_score": 0.61,
+      "bounding_box_pixels": [
+        536.0,
+        800.0,
+        620.0,
+        810.0
+      ],
+      "geolocation": {
+        "latitude": 27.80117512448608,
+        "longitude": -82.49958507371888,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 7.77
+      },
+      "dimensions_meters": {
+        "length_m": 2.058,
+        "width_m": 12.646,
+        "area_sq_meters": 26.022
+      },
+      "ping_range": [
+        792,
+        819
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_002",
+      "timestamp": "2024-01-15T10:00:35.100000Z",
+      "classification": "debris",
+      "confidence_score": 0.67,
+      "bounding_box_pixels": [
+        1616.0,
+        338.0,
+        1648.0,
+        364.0
+      ],
+      "geolocation": {
+        "latitude": 27.799614178910986,
+        "longitude": -82.49917128138694,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 8.26
+      },
+      "dimensions_meters": {
+        "length_m": 5.35,
+        "width_m": 4.755,
+        "area_sq_meters": 25.443
+      },
+      "ping_range": [
+        338,
+        364
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_003",
+      "timestamp": "2024-01-15T10:00:33.700000Z",
+      "classification": "pipe",
+      "confidence_score": 0.9,
+      "bounding_box_pixels": [
+        1574.0,
+        320.0,
+        1638.0,
+        354.0
+      ],
+      "geolocation": {
+        "latitude": 27.799619860412427,
+        "longitude": -82.49922223382812,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 8.18
+      },
+      "dimensions_meters": {
+        "length_m": 6.996,
+        "width_m": 9.524,
+        "area_sq_meters": 66.634
+      },
+      "ping_range": [
+        325,
+        349
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_004",
+      "timestamp": "2024-01-15T10:00:54.200000Z",
+      "classification": "tire",
+      "confidence_score": 0.94,
+      "bounding_box_pixels": [
+        945.0,
+        534.0,
+        993.0,
+        550.0
+      ],
+      "geolocation": {
+        "latitude": 27.80042506957912,
+        "longitude": -82.49951949316281,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 6.5
+      },
+      "dimensions_meters": {
+        "length_m": 3.292,
+        "width_m": 0.0,
+        "area_sq_meters": 0.0
+      },
+      "ping_range": [
+        532,
+        552
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_005",
+      "timestamp": "2024-01-15T10:00:21Z",
+      "classification": "tire",
+      "confidence_score": 0.9,
+      "bounding_box_pixels": [
+        1157.0,
+        200.0,
+        1199.0,
+        220.0
+      ],
+      "geolocation": {
+        "latitude": 27.799880715617427,
+        "longitude": -82.49988470736236,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 6.84
+      },
+      "dimensions_meters": {
+        "length_m": 4.116,
+        "width_m": 8.356,
+        "area_sq_meters": 34.388
+      },
+      "ping_range": [
+        204,
+        216
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_006",
+      "timestamp": "2024-01-15T10:00:15.600000Z",
+      "classification": "tire",
+      "confidence_score": 0.73,
+      "bounding_box_pixels": [
+        1476.0,
+        137.0,
+        1520.0,
+        175.0
+      ],
+      "geolocation": {
+        "latitude": 27.799486633957574,
+        "longitude": -82.49960313899697,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 7.86
+      },
+      "dimensions_meters": {
+        "length_m": 7.82,
+        "width_m": 6.602,
+        "area_sq_meters": 51.621
+      },
+      "ping_range": [
+        144,
+        168
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_007",
+      "timestamp": "2024-01-15T10:01:15.750000Z",
+      "classification": "pipe",
+      "confidence_score": 0.62,
+      "bounding_box_pixels": [
+        1113.0,
+        741.0,
+        1167.0,
+        773.0
+      ],
+      "geolocation": {
+        "latitude": 27.800656664850962,
+        "longitude": -82.49914467804042,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 6.66
+      },
+      "dimensions_meters": {
+        "length_m": 6.585,
+        "width_m": 14.621,
+        "area_sq_meters": 96.281
+      },
+      "ping_range": [
+        743,
+        772
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_008",
+      "timestamp": "2024-01-15T10:00:40.200000Z",
+      "classification": "tire",
+      "confidence_score": 0.7,
+      "bounding_box_pixels": [
+        855.0,
+        391.0,
+        897.0,
+        413.0
+      ],
+      "geolocation": {
+        "latitude": 27.80034227249961,
+        "longitude": -82.49983874163284,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 6.81
+      },
+      "dimensions_meters": {
+        "length_m": 4.527,
+        "width_m": 8.69,
+        "area_sq_meters": 39.34
+      },
+      "ping_range": [
+        396,
+        408
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    },
+    {
+      "detection_id": "DET_009",
+      "timestamp": "2024-01-15T10:00:27.650000Z",
+      "classification": "ghost_net",
+      "confidence_score": 0.69,
+      "bounding_box_pixels": [
+        1099.0,
+        261.0,
+        1155.0,
+        291.0
+      ],
+      "geolocation": {
+        "latitude": 27.8000670405364,
+        "longitude": -82.49990033974416,
+        "depth_meters": 17.0,
+        "uncertainty_meters": 6.53
+      },
+      "dimensions_meters": {
+        "length_m": 6.173,
+        "width_m": 11.968,
+        "area_sq_meters": 73.883
+      },
+      "ping_range": [
+        266,
+        287
+      ],
+      "quality_flags": [
+        "LAYBACK_APPLIED",
+        "SLANT_RANGE_CORRECTED",
+        "GPS_VALID",
+        "ALTITUDE_VALID"
+      ],
+      "sonar_image_id": null
+    }
+  ],
+  "summary": {
+    "total_detections": 10,
+    "detections_by_class": {
+      "ghost_net": 2,
+      "pipe": 3,
+      "debris": 1,
+      "tire": 4
+    },
+    "survey_area_sq_km": 0.0,
+    "avg_confidence": 0.744,
+    "total_pings_processed": 1000
+  },
+  "qa_results": null,
+  "generated_at": "2026-09-01T18:39:00.474842Z"
+}

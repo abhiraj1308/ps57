@@ -1,0 +1,72 @@
+# Geotagging System Configuration
+sonar_systems:
+  klein_3000:
+    name: "Klein System 3000"
+    frequency_khz: 445
+    max_range_m: 150
+    beam_width_deg: 0.2
+    towfish_depth_offset_m: 5.0
+    towpoint_offset_stern_m: 15.0
+    towpoint_offset_stbd_m: 0.0
+    catenary_factor: 0.90
+    speed_of_sound_ms: 1500.0
+  
+  edgetech_4125:
+    name: "EdgeTech 4125"
+    frequency_khz: 400
+    max_range_m: 200
+    beam_width_deg: 0.28
+    towfish_depth_offset_m: 3.0
+    towpoint_offset_stern_m: 12.0
+    towpoint_offset_stbd_m: 0.0
+    catenary_factor: 0.88
+    speed_of_sound_ms: 1500.0
+
+  hull_mounted_generic:
+    name: "Hull Mounted Generic"
+    frequency_khz: 200
+    max_range_m: 100
+    beam_width_deg: 1.0
+    towfish_depth_offset_m: 0.0
+    towpoint_offset_stern_m: 0.0
+    towpoint_offset_stbd_m: 0.0
+    catenary_factor: 1.0
+    speed_of_sound_ms: 1500.0
+
+coordinate_system:
+  default_epsg: 4326
+  utm_auto_detect: true
+  default_utm_epsg: 32617  # Tampa Bay area fallback
+
+reporting:
+  formats:
+    - json
+    - csv
+    - geojson
+    - gpkg
+  include_qa_metrics: true
+  confidence_threshold: 0.6
+  output_directory: "./data/sample_output"
+
+qa_validation:
+  max_vessel_speed_knots: 30.0
+  max_detection_aspect_ratio: 20.0
+  min_confidence: 0.6
+  max_position_uncertainty_m: 50.0
+  depth_consistency_tolerance: 0.20
+  reject_land_detections: true
+  max_offtrack_distance_m: 250.0  # max plausible distance from a detection to its sonar track
+
+pipeline:
+  max_workers: 4
+  batch_size: 1000
+  merge_distance_m: 5.0
+  interpolation_method: "linear"  # linear, cubic, nearest
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  rate_limit_per_minute: 60
+  max_upload_size_mb: 2048
+  data_directory: "./data"
