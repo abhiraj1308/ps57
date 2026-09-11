@@ -1,0 +1,288 @@
+{
+  "model_version": "yolo11s_crab_pot_baseline",
+  "metadata": {
+    "model_file": "crab_pot_yolo11s_832_best.pt",
+    "model_type": "Ultralytics YOLO (DetectionModel)",
+    "task": "detection",
+    "source": "D:\\Faizan\\Projects\\Underwater Marine Debris and Anomaly Detection System\\sample_crab_pot_images",
+    "confidence_threshold": 0.15,
+    "device": "cpu",
+    "total_images": 8,
+    "images_processed": 8,
+    "failed_images_count": 0,
+    "total_detections": 11,
+    "generated_at": "2026-09-10T09:45:17.329730+00:00"
+  },
+  "failed_images": [],
+  "frames": [
+    {
+      "frame_id": "baycove_07_06_png_jpg.rf.5a2e74f04f707fe66f050a3b61fcd7c2",
+      "model_version": "yolo11s_crab_pot_baseline",
+      "image_width": 640,
+      "image_height": 640,
+      "inference_latency_ms": 231.52,
+      "detections": [
+        {
+          "detection_id": "baycove_07_06_png_jpg.rf.5a2e74f04f707fe66f050a3b61fcd7c2_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1901,
+          "bbox_xywh_normalized": [
+            0.4716,
+            0.0565,
+            0.0299,
+            0.0292
+          ],
+          "bbox_xyxy_pixel": [
+            292.24,
+            26.8,
+            311.36,
+            45.5
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "baycove_07_07_png_jpg.rf.4c2d86c1becfaf0c5471fca9f6e3dbfb",
+      "model_version": "yolo11s_crab_pot_baseline",
+      "image_width": 640,
+      "image_height": 640,
+      "inference_latency_ms": 186.02,
+      "detections": [
+        {
+          "detection_id": "baycove_07_07_png_jpg.rf.4c2d86c1becfaf0c5471fca9f6e3dbfb_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2919,
+          "bbox_xywh_normalized": [
+            0.7816,
+            0.0403,
+            0.0253,
+            0.0256
+          ],
+          "bbox_xyxy_pixel": [
+            492.1,
+            17.58,
+            508.29,
+            33.95
+          ]
+        },
+        {
+          "detection_id": "baycove_07_07_png_jpg.rf.4c2d86c1becfaf0c5471fca9f6e3dbfb_det_002",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1673,
+          "bbox_xywh_normalized": [
+            0.7555,
+            0.5197,
+            0.0344,
+            0.0303
+          ],
+          "bbox_xyxy_pixel": [
+            472.51,
+            322.89,
+            494.5,
+            342.26
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "baycove_07_08_png_jpg.rf.32a446e4a0993e4232cc9f94bd1d38a1",
+      "model_version": "yolo11s_crab_pot_baseline",
+      "image_width": 640,
+      "image_height": 640,
+      "inference_latency_ms": 143.49,
+      "detections": [
+        {
+          "detection_id": "baycove_07_08_png_jpg.rf.32a446e4a0993e4232cc9f94bd1d38a1_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1968,
+          "bbox_xywh_normalized": [
+            0.637,
+            0.0966,
+            0.0387,
+            0.0295
+          ],
+          "bbox_xyxy_pixel": [
+            395.3,
+            52.37,
+            420.05,
+            71.22
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "baycove_07_10_png_jpg.rf.e3b62b44fe8e5e4363b52351ba782b8f",
+      "model_version": "yolo11s_crab_pot_baseline",
+      "image_width": 640,
+      "image_height": 640,
+      "inference_latency_ms": 147.63,
+      "detections": []
+    },
+    {
+      "frame_id": "baycove_07_13_png_jpg.rf.137a5b1526ba23daeba7d6fe7441692e",
+      "model_version": "yolo11s_crab_pot_baseline",
+      "image_width": 640,
+      "image_height": 640,
+      "inference_latency_ms": 146.14,
+      "detections": [
+        {
+          "detection_id": "baycove_07_13_png_jpg.rf.137a5b1526ba23daeba7d6fe7441692e_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2176,
+          "bbox_xywh_normalized": [
+            0.331,
+            0.2139,
+            0.0336,
+            0.0228
+          ],
+          "bbox_xyxy_pixel": [
+            201.09,
+            129.6,
+            222.59,
+            144.22
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "baycove_07_14_png_jpg.rf.3f8cedd2d50ef473a9c8ee632ec7f990",
+      "model_version": "yolo11s_crab_pot_baseline",
+      "image_width": 640,
+      "image_height": 640,
+      "inference_latency_ms": 141.84,
+      "detections": [
+        {
+          "detection_id": "baycove_07_14_png_jpg.rf.3f8cedd2d50ef473a9c8ee632ec7f990_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1526,
+          "bbox_xywh_normalized": [
+            0.1917,
+            0.9618,
+            0.0361,
+            0.0291
+          ],
+          "bbox_xyxy_pixel": [
+            111.12,
+            606.27,
+            134.24,
+            624.88
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "baycove_07_15_png_jpg.rf.7f81b82c41fae460608733f4c11ab936",
+      "model_version": "yolo11s_crab_pot_baseline",
+      "image_width": 640,
+      "image_height": 640,
+      "inference_latency_ms": 138.18,
+      "detections": [
+        {
+          "detection_id": "baycove_07_15_png_jpg.rf.7f81b82c41fae460608733f4c11ab936_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2108,
+          "bbox_xywh_normalized": [
+            0.7184,
+            0.5528,
+            0.0352,
+            0.0316
+          ],
+          "bbox_xyxy_pixel": [
+            448.53,
+            343.68,
+            471.08,
+            363.91
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "baycove_07_16_png_jpg.rf.a0248faa15ab56af1a1d1935580b1d21",
+      "model_version": "yolo11s_crab_pot_baseline",
+      "image_width": 640,
+      "image_height": 640,
+      "inference_latency_ms": 148.62,
+      "detections": [
+        {
+          "detection_id": "baycove_07_16_png_jpg.rf.a0248faa15ab56af1a1d1935580b1d21_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2873,
+          "bbox_xywh_normalized": [
+            0.8346,
+            0.3106,
+            0.0327,
+            0.0259
+          ],
+          "bbox_xyxy_pixel": [
+            523.67,
+            190.46,
+            544.61,
+            207.07
+          ]
+        },
+        {
+          "detection_id": "baycove_07_16_png_jpg.rf.a0248faa15ab56af1a1d1935580b1d21_det_002",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2546,
+          "bbox_xywh_normalized": [
+            0.9309,
+            0.7645,
+            0.0327,
+            0.0234
+          ],
+          "bbox_xyxy_pixel": [
+            585.3,
+            481.79,
+            606.2,
+            496.75
+          ]
+        },
+        {
+          "detection_id": "baycove_07_16_png_jpg.rf.a0248faa15ab56af1a1d1935580b1d21_det_003",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2361,
+          "bbox_xywh_normalized": [
+            0.484,
+            0.1746,
+            0.035,
+            0.025
+          ],
+          "bbox_xyxy_pixel": [
+            298.57,
+            103.75,
+            320.99,
+            119.72
+          ]
+        },
+        {
+          "detection_id": "baycove_07_16_png_jpg.rf.a0248faa15ab56af1a1d1935580b1d21_det_004",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2226,
+          "bbox_xywh_normalized": [
+            0.5841,
+            0.1671,
+            0.0343,
+            0.0242
+          ],
+          "bbox_xyxy_pixel": [
+            362.82,
+            99.19,
+            384.79,
+            114.71
+          ]
+        }
+      ]
+    }
+  ]
+}

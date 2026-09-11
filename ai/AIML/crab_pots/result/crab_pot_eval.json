@@ -1,0 +1,1295 @@
+{
+  "model_version": "yolo11s_crab_pot_832_v1",
+  "metadata": {
+    "model_file": "crab_pot_yolo11s_832_best.pt",
+    "model_type": "Ultralytics YOLO (DetectionModel)",
+    "task": "detection",
+    "source": "D:\\Faizan\\Projects\\Underwater Marine Debris and Anomaly Detection System\\AI4Shipwrecks\\test\\images",
+    "confidence_threshold": 0.15,
+    "device": "cpu",
+    "total_images": 120,
+    "images_processed": 120,
+    "failed_images_count": 0,
+    "total_detections": 17,
+    "generated_at": "2026-09-10T10:00:34.331804+00:00"
+  },
+  "failed_images": [],
+  "frames": [
+    {
+      "frame_id": "Artificial_Reef_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2476,
+      "inference_latency_ms": 140.04,
+      "detections": [
+        {
+          "detection_id": "Artificial_Reef_01_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1916,
+          "bbox_xywh_normalized": [
+            0.7314,
+            0.5727,
+            0.0481,
+            0.0259
+          ],
+          "bbox_xyxy_pixel": [
+            1222.31,
+            1386.02,
+            1305.36,
+            1450.18
+          ]
+        },
+        {
+          "detection_id": "Artificial_Reef_01_det_002",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1684,
+          "bbox_xywh_normalized": [
+            0.685,
+            0.9497,
+            0.039,
+            0.0273
+          ],
+          "bbox_xyxy_pixel": [
+            1149.99,
+            2317.79,
+            1217.38,
+            2385.31
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Artificial_Reef_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2480,
+      "inference_latency_ms": 108.76,
+      "detections": [
+        {
+          "detection_id": "Artificial_Reef_02_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1519,
+          "bbox_xywh_normalized": [
+            0.5658,
+            0.4352,
+            0.0589,
+            0.0351
+          ],
+          "bbox_xyxy_pixel": [
+            926.73,
+            1035.64,
+            1028.55,
+            1122.75
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Artificial_Reef_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2522,
+      "inference_latency_ms": 137.6,
+      "detections": [
+        {
+          "detection_id": "Artificial_Reef_03_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2062,
+          "bbox_xywh_normalized": [
+            0.1245,
+            0.9553,
+            0.0439,
+            0.0286
+          ],
+          "bbox_xyxy_pixel": [
+            177.13,
+            2373.27,
+            252.98,
+            2445.28
+          ]
+        },
+        {
+          "detection_id": "Artificial_Reef_03_det_002",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1894,
+          "bbox_xywh_normalized": [
+            0.1758,
+            0.585,
+            0.0488,
+            0.0293
+          ],
+          "bbox_xyxy_pixel": [
+            261.56,
+            1438.28,
+            345.85,
+            1512.29
+          ]
+        },
+        {
+          "detection_id": "Artificial_Reef_03_det_003",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1799,
+          "bbox_xywh_normalized": [
+            0.5515,
+            0.8258,
+            0.0344,
+            0.0263
+          ],
+          "bbox_xyxy_pixel": [
+            923.28,
+            2049.6,
+            982.81,
+            2115.99
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Artificial_Reef_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2501,
+      "inference_latency_ms": 106.76,
+      "detections": []
+    },
+    {
+      "frame_id": "Artificial_Reef_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2514,
+      "inference_latency_ms": 104.16,
+      "detections": []
+    },
+    {
+      "frame_id": "Artificial_Reef_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2476,
+      "inference_latency_ms": 103.53,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2574,
+      "inference_latency_ms": 100.46,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2634,
+      "inference_latency_ms": 107.63,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2595,
+      "inference_latency_ms": 104.72,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2607,
+      "inference_latency_ms": 98.5,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2602,
+      "inference_latency_ms": 97.3,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2620,
+      "inference_latency_ms": 103.2,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_07",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2589,
+      "inference_latency_ms": 105.08,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_08",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3325,
+      "inference_latency_ms": 112.24,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_09",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3337,
+      "inference_latency_ms": 80.17,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_10",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3330,
+      "inference_latency_ms": 89.14,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_11",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3324,
+      "inference_latency_ms": 93.5,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_12",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3318,
+      "inference_latency_ms": 82.18,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_13",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3296,
+      "inference_latency_ms": 81.13,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_14",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3025,
+      "inference_latency_ms": 110.83,
+      "detections": []
+    },
+    {
+      "frame_id": "Barge_No_1_15",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3111,
+      "inference_latency_ms": 84.56,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsair_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1817,
+      "inference_latency_ms": 176.48,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsair_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1863,
+      "inference_latency_ms": 139.35,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsair_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1843,
+      "inference_latency_ms": 145.11,
+      "detections": [
+        {
+          "detection_id": "Corsair_03_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1761,
+          "bbox_xywh_normalized": [
+            0.2236,
+            0.5261,
+            0.1,
+            0.0403
+          ],
+          "bbox_xyxy_pixel": [
+            300.06,
+            932.42,
+            472.78,
+            1006.7
+          ]
+        },
+        {
+          "detection_id": "Corsair_03_det_002",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1713,
+          "bbox_xywh_normalized": [
+            0.2493,
+            0.5206,
+            0.0186,
+            0.0176
+          ],
+          "bbox_xyxy_pixel": [
+            414.68,
+            943.14,
+            446.8,
+            975.63
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Corsair_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1849,
+      "inference_latency_ms": 132.32,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsican_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1445,
+      "inference_latency_ms": 154.86,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsican_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1471,
+      "inference_latency_ms": 184.56,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsican_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1470,
+      "inference_latency_ms": 157.55,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsican_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1472,
+      "inference_latency_ms": 134.46,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsican_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2576,
+      "inference_latency_ms": 97.74,
+      "detections": []
+    },
+    {
+      "frame_id": "Corsican_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2573,
+      "inference_latency_ms": 125.41,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 773,
+      "inference_latency_ms": 100.85,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 853,
+      "inference_latency_ms": 110.57,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 621,
+      "inference_latency_ms": 83.43,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 655,
+      "inference_latency_ms": 57.63,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 657,
+      "inference_latency_ms": 58.8,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 662,
+      "inference_latency_ms": 56.29,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_07",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 650,
+      "inference_latency_ms": 59.0,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_08",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 9452,
+      "inference_latency_ms": 61.03,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_09",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 9636,
+      "inference_latency_ms": 42.14,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_10",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 9523,
+      "inference_latency_ms": 36.82,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_11",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 9589,
+      "inference_latency_ms": 40.41,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_12",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 9385,
+      "inference_latency_ms": 36.23,
+      "detections": []
+    },
+    {
+      "frame_id": "Haltiner_Barge_13",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 9688,
+      "inference_latency_ms": 37.11,
+      "detections": []
+    },
+    {
+      "frame_id": "James_Davidson_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 6739,
+      "inference_latency_ms": 81.13,
+      "detections": []
+    },
+    {
+      "frame_id": "James_Davidson_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 6617,
+      "inference_latency_ms": 59.74,
+      "detections": []
+    },
+    {
+      "frame_id": "James_Davidson_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 6749,
+      "inference_latency_ms": 47.66,
+      "detections": []
+    },
+    {
+      "frame_id": "James_Davidson_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 6654,
+      "inference_latency_ms": 53.82,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2152,
+      "inference_latency_ms": 150.16,
+      "detections": [
+        {
+          "detection_id": "Lucinda_van_Valkenburg_01_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2183,
+          "bbox_xywh_normalized": [
+            0.3833,
+            0.8059,
+            0.0343,
+            0.0229
+          ],
+          "bbox_xyxy_pixel": [
+            632.7,
+            1709.64,
+            692.03,
+            1758.99
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1740,
+      "inference_latency_ms": 188.54,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1719,
+      "inference_latency_ms": 148.34,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1729,
+      "inference_latency_ms": 140.4,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1757,
+      "inference_latency_ms": 134.23,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1760,
+      "inference_latency_ms": 152.39,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_07",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1758,
+      "inference_latency_ms": 145.07,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_08",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1757,
+      "inference_latency_ms": 138.48,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_09",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1733,
+      "inference_latency_ms": 151.39,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_10",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1736,
+      "inference_latency_ms": 142.99,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_11",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1735,
+      "inference_latency_ms": 141.7,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_12",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2819,
+      "inference_latency_ms": 117.94,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_13",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2838,
+      "inference_latency_ms": 84.26,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_14",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2908,
+      "inference_latency_ms": 86.47,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_15",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2833,
+      "inference_latency_ms": 83.12,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_16",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2936,
+      "inference_latency_ms": 95.73,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_17",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2812,
+      "inference_latency_ms": 95.51,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_18",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2937,
+      "inference_latency_ms": 98.57,
+      "detections": []
+    },
+    {
+      "frame_id": "Lucinda_van_Valkenburg_19",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2863,
+      "inference_latency_ms": 114.79,
+      "detections": []
+    },
+    {
+      "frame_id": "Monohansett_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 9004,
+      "inference_latency_ms": 39.99,
+      "detections": []
+    },
+    {
+      "frame_id": "Monohansett_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 8779,
+      "inference_latency_ms": 66.1,
+      "detections": []
+    },
+    {
+      "frame_id": "Monohansett_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 8976,
+      "inference_latency_ms": 38.88,
+      "detections": []
+    },
+    {
+      "frame_id": "Monohansett_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 4685,
+      "inference_latency_ms": 81.26,
+      "detections": []
+    },
+    {
+      "frame_id": "Monohansett_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 4821,
+      "inference_latency_ms": 60.06,
+      "detections": []
+    },
+    {
+      "frame_id": "Monrovia_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1694,
+      "inference_latency_ms": 148.7,
+      "detections": []
+    },
+    {
+      "frame_id": "Monrovia_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1687,
+      "inference_latency_ms": 139.69,
+      "detections": []
+    },
+    {
+      "frame_id": "Monrovia_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1676,
+      "inference_latency_ms": 145.34,
+      "detections": []
+    },
+    {
+      "frame_id": "Monrovia_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1688,
+      "inference_latency_ms": 152.98,
+      "detections": []
+    },
+    {
+      "frame_id": "Monrovia_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1683,
+      "inference_latency_ms": 138.84,
+      "detections": [
+        {
+          "detection_id": "Monrovia_05_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.2188,
+          "bbox_xywh_normalized": [
+            0.572,
+            0.6511,
+            0.049,
+            0.0593
+          ],
+          "bbox_xyxy_pixel": [
+            946.07,
+            1045.89,
+            1030.66,
+            1145.69
+          ]
+        },
+        {
+          "detection_id": "Monrovia_05_det_002",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1723,
+          "bbox_xywh_normalized": [
+            0.5729,
+            0.6516,
+            0.055,
+            0.0777
+          ],
+          "bbox_xyxy_pixel": [
+            942.43,
+            1031.24,
+            1037.49,
+            1162.05
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Monrovia_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1682,
+      "inference_latency_ms": 146.96,
+      "detections": []
+    },
+    {
+      "frame_id": "Monrovia_07",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1722,
+      "inference_latency_ms": 138.13,
+      "detections": []
+    },
+    {
+      "frame_id": "Monrovia_08",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1697,
+      "inference_latency_ms": 135.96,
+      "detections": []
+    },
+    {
+      "frame_id": "Shamrock_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1878,
+      "inference_latency_ms": 156.57,
+      "detections": [
+        {
+          "detection_id": "Shamrock_01_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1731,
+          "bbox_xywh_normalized": [
+            0.7491,
+            0.854,
+            0.0312,
+            0.0216
+          ],
+          "bbox_xyxy_pixel": [
+            1267.4,
+            1583.48,
+            1321.35,
+            1624.0
+          ]
+        },
+        {
+          "detection_id": "Shamrock_01_det_002",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1641,
+          "bbox_xywh_normalized": [
+            0.0522,
+            0.9582,
+            0.0363,
+            0.0271
+          ],
+          "bbox_xyxy_pixel": [
+            58.78,
+            1774.08,
+            121.49,
+            1824.92
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Shamrock_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1902,
+      "inference_latency_ms": 135.63,
+      "detections": [
+        {
+          "detection_id": "Shamrock_02_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1633,
+          "bbox_xywh_normalized": [
+            0.2561,
+            0.1778,
+            0.0334,
+            0.021
+          ],
+          "bbox_xyxy_pixel": [
+            413.69,
+            318.19,
+            471.33,
+            358.04
+          ]
+        },
+        {
+          "detection_id": "Shamrock_02_det_002",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1632,
+          "bbox_xywh_normalized": [
+            0.933,
+            0.0333,
+            0.0316,
+            0.026
+          ],
+          "bbox_xyxy_pixel": [
+            1584.92,
+            38.58,
+            1639.51,
+            88.08
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Shamrock_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2458,
+      "inference_latency_ms": 124.06,
+      "detections": [
+        {
+          "detection_id": "Shamrock_03_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1551,
+          "bbox_xywh_normalized": [
+            0.9169,
+            0.831,
+            0.0472,
+            0.0241
+          ],
+          "bbox_xyxy_pixel": [
+            1543.67,
+            2013.09,
+            1625.15,
+            2072.29
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Shamrock_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2460,
+      "inference_latency_ms": 98.11,
+      "detections": []
+    },
+    {
+      "frame_id": "Shamrock_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2471,
+      "inference_latency_ms": 99.54,
+      "detections": []
+    },
+    {
+      "frame_id": "Shamrock_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2451,
+      "inference_latency_ms": 109.43,
+      "detections": [
+        {
+          "detection_id": "Shamrock_06_det_001",
+          "class_id": 0,
+          "class_name": "Crab-Pot",
+          "ai_confidence": 0.1539,
+          "bbox_xywh_normalized": [
+            0.0632,
+            0.1434,
+            0.032,
+            0.0208
+          ],
+          "bbox_xyxy_pixel": [
+            81.64,
+            326.07,
+            136.9,
+            377.02
+          ]
+        }
+      ]
+    },
+    {
+      "frame_id": "Viator_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3632,
+      "inference_latency_ms": 107.45,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 3652,
+      "inference_latency_ms": 81.51,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1044,
+      "inference_latency_ms": 122.51,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2143,
+      "inference_latency_ms": 109.94,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2152,
+      "inference_latency_ms": 109.4,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2175,
+      "inference_latency_ms": 113.4,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_07",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2160,
+      "inference_latency_ms": 120.42,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_08",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2181,
+      "inference_latency_ms": 117.13,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_09",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2158,
+      "inference_latency_ms": 111.27,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_10",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2152,
+      "inference_latency_ms": 122.09,
+      "detections": []
+    },
+    {
+      "frame_id": "Viator_11",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2158,
+      "inference_latency_ms": 110.75,
+      "detections": []
+    },
+    {
+      "frame_id": "WH_Gilbert_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 936,
+      "inference_latency_ms": 117.62,
+      "detections": []
+    },
+    {
+      "frame_id": "WH_Gilbert_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 891,
+      "inference_latency_ms": 112.48,
+      "detections": []
+    },
+    {
+      "frame_id": "WH_Gilbert_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1348,
+      "inference_latency_ms": 152.16,
+      "detections": []
+    },
+    {
+      "frame_id": "WH_Gilbert_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1378,
+      "inference_latency_ms": 193.97,
+      "detections": []
+    },
+    {
+      "frame_id": "WH_Gilbert_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1381,
+      "inference_latency_ms": 170.48,
+      "detections": []
+    },
+    {
+      "frame_id": "WH_Gilbert_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 1495,
+      "inference_latency_ms": 148.52,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_01",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2568,
+      "inference_latency_ms": 120.32,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_02",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2672,
+      "inference_latency_ms": 136.69,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_03",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2624,
+      "inference_latency_ms": 101.73,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_04",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2639,
+      "inference_latency_ms": 99.34,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_05",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2620,
+      "inference_latency_ms": 105.31,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_06",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2574,
+      "inference_latency_ms": 101.2,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_07",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2648,
+      "inference_latency_ms": 131.72,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_08",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2623,
+      "inference_latency_ms": 106.38,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_09",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2647,
+      "inference_latency_ms": 90.49,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_10",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2646,
+      "inference_latency_ms": 95.41,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_11",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2648,
+      "inference_latency_ms": 100.74,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_12",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2648,
+      "inference_latency_ms": 100.62,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_13",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2670,
+      "inference_latency_ms": 98.53,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_14",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2598,
+      "inference_latency_ms": 98.48,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_15",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2696,
+      "inference_latency_ms": 94.39,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_16",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2620,
+      "inference_latency_ms": 99.39,
+      "detections": []
+    },
+    {
+      "frame_id": "WP_Thew_17",
+      "model_version": "yolo11s_crab_pot_832_v1",
+      "image_width": 1728,
+      "image_height": 2647,
+      "inference_latency_ms": 100.48,
+      "detections": []
+    }
+  ]
+}
