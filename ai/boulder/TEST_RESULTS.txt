@@ -1,0 +1,29 @@
+BOULDER DETECTION — FINAL TEST RESULTS
+
+Model:
+YOLO11n
+
+Model checkpoint:
+model/best.pt
+
+Validation metrics from the completed 1536px experiment:
+
+Precision: 0.00075
+Recall: 0.0146
+mAP50: 0.0000277
+mAP50-95: 0.0000057
+
+Dataset:
+202 positive tiles
+5,293 unique bounding boxes
+162 training images
+40 validation images
+
+Important limitation:
+The current trained detector is experimental and is not production-ready.
+Many boulder targets are extremely small in the sonar imagery.
+The median bounding-box size in the prepared 512-pixel source tiles
+was approximately 11 x 8 pixels.
+
+Testing status:
+The module interface has been implemented and import-tested.

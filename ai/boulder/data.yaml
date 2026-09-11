@@ -1,0 +1,5 @@
+path: C:/Users/DEYASINI/OneDrive/Documents/Boulder_Rock_Detection/final_dataset_v3
+train: images/train
+val: images/val
+names:
+  0: boulder
