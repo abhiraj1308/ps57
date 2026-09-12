@@ -33,8 +33,23 @@ function App() {
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'uploading' | 'processing' | 'complete'>('idle');
   const [progress, setProgress] = useState<number>(0);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [inspectDetection, setInspectDetection] = useState<Detection | null>(null);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
+  const downloadCSV = () => {
+    if (detections.length === 0) return alert("No data to export");
+    const headers = ["ID", "Class", "Confidence", "Latitude", "Longitude", "Status", "Priority"];
+    const rows = detections.map(d => [d.id, d.class_name, (d.confidence * 100).toFixed(1) + "%", d.latitude.toFixed(5), d.longitude.toFixed(5), d.status, d.priority].join(","));
+    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows].join("\\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "ps57_detections_report.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const fetchData = async () => {
     try {
@@ -156,7 +171,7 @@ function App() {
           <table>
             <thead>
               <tr>
-                <th>ID</th><th>CLASS</th><th>CONFIDENCE</th><th>LOCATION</th><th>SIZE</th><th>STATUS</th><th>PRIORITY</th>
+                <th>ID</th><th>CLASS</th><th>CONFIDENCE</th><th>LOCATION</th><th>SIZE</th><th>STATUS</th><th>PRIORITY</th><th>ACTION</th>
               </tr>
             </thead>
             <tbody>
@@ -181,6 +196,11 @@ function App() {
                     <span className={detection.priority.toLowerCase() === "high" ? "priorityBadge highPriority" : "priorityBadge"}>
                       {detection.priority}
                     </span>
+                  </td>
+                  <td>
+                    <button onClick={() => setInspectDetection(detection)} style={{background: '#3b82f6', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '4px', cursor: 'pointer', fontSize: '10px'}}>
+                      Inspect
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -285,23 +305,43 @@ function App() {
                   </div>
               )}
 
-              <div className="uploadControls">
+              <div className="uploadControls" style={{display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap', marginTop: '10px'}}>
+                {/* File Input */}
                 <input 
                   type="file" 
-                  id="sonarFile" 
+                  id="sonarFiles" 
+                  multiple 
+                  onChange={handleFileChange} 
+                  style={{display: 'none'}}
+                />
+                <label htmlFor="sonarFiles" className="primaryButton" style={{cursor: 'pointer', background: '#3b82f6', display: 'inline-block', padding: '8px 12px'}}>
+                  + Select Files
+                </label>
+
+                {/* Folder Input */}
+                <input 
+                  type="file" 
+                  id="sonarFolder" 
                   multiple 
                   // @ts-ignore
                   webkitdirectory="" 
                   onChange={handleFileChange} 
+                  style={{display: 'none'}}
                 />
-                <label htmlFor="sonarFile" className="fileLabel">
+                <label htmlFor="sonarFolder" className="primaryButton" style={{cursor: 'pointer', background: '#6366f1', display: 'inline-block', padding: '8px 12px'}}>
+                  + Select Folder
+                </label>
+
+                <span style={{color: '#94a3b8', fontSize: '13px', marginLeft: '10px'}}>
                   {selectedFiles 
                     ? `${selectedFiles.length} file(s) selected` 
-                    : "Choose files or folder"}
-                </label>
+                    : "No files chosen"}
+                </span>
+
                 <button 
                   className="uploadButton" 
                   onClick={handleUpload}
+                  style={{marginLeft: 'auto', padding: '8px 16px'}}
                   disabled={!selectedFiles || uploadStatus === 'uploading' || uploadStatus === 'processing'}
                 >
                   {uploadStatus === 'idle' || uploadStatus === 'complete' ? 'Upload & Process' : 'Processing...'}
@@ -448,7 +488,7 @@ function App() {
                     <div className="emptyIcon">📄</div>
                     <h4>Export Data</h4>
                     <p>Download your latest sonar intelligence analysis.</p>
-                    <button className="primaryButton" style={{marginTop: "20px"}} onClick={() => alert("Report downloaded successfully!")}>Download CSV</button>
+                    <button className="primaryButton" style={{marginTop: "20px"}} onClick={downloadCSV}>Download CSV</button>
                 </div>
             </section>
         )}
@@ -458,6 +498,31 @@ function App() {
           <span>AI Detection Engine | PostgreSQL | FastAPI</span>
         </footer>
       </main>
+
+      {/* INSPECT MODAL */}
+      {inspectDetection && (
+        <div style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999}}>
+          <div style={{background: '#1e293b', padding: '20px', borderRadius: '12px', width: '80%', maxWidth: '800px', border: '1px solid #334155'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '15px'}}>
+              <h3 style={{margin: 0, color: '#f8fafc'}}>Sonar Imagery Inspect: #{inspectDetection.id}</h3>
+              <button onClick={() => setInspectDetection(null)} style={{background: 'transparent', border: 'none', color: '#94a3b8', cursor: 'pointer', fontSize: '20px'}}>&times;</button>
+            </div>
+            
+            <div style={{background: '#0f172a', height: '400px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed #475569', position: 'relative', overflow: 'hidden'}}>
+               {/* Dummy Sonar Image Simulation */}
+               <div style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'repeating-linear-gradient(0deg, #1e293b, #1e293b 2px, #0f172a 2px, #0f172a 4px)', opacity: 0.5}}></div>
+               <div style={{position: 'absolute', top: '40%', left: '40%', width: '20%', height: '20%', border: '2px solid #ef4444', background: 'rgba(239,68,68,0.2)'}}></div>
+               <span style={{position: 'absolute', top: '35%', left: '40%', color: '#ef4444', fontSize: '12px', fontWeight: 'bold'}}>{inspectDetection.class_name} ({(inspectDetection.confidence*100).toFixed(1)}%)</span>
+            </div>
+            
+            <div style={{marginTop: '15px', color: '#cbd5e1', fontSize: '13px', display: 'flex', justifyContent: 'space-between'}}>
+              <span><strong>Location:</strong> {inspectDetection.latitude.toFixed(5)}, {inspectDetection.longitude.toFixed(5)}</span>
+              <span><strong>Size:</strong> {inspectDetection.width.toFixed(2)}m x {inspectDetection.height.toFixed(2)}m</span>
+              <span><strong>Priority:</strong> {inspectDetection.priority}</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

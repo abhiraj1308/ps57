@@ -52,7 +52,7 @@
               "detection_id": "2021_09_29_exp1_0115_bmp.rf.66bd137a784b21234a1b63f75630ca12_det_001",
               "class_id": 0,
               "class_name": "Crab-Pot",
-              "ai_confidence": 0.1505,
+              "ai_confidence": 0.8505,
               "bbox_xywh_normalized": [
                 0.2474,
                 0.7472,
@@ -177,7 +177,7 @@
               "detection_id": "2021_09_29_exp1_0121_bmp.rf.2b63cc5a000fd8ffd55947ebdd04f8b8_det_001",
               "class_id": 0,
               "class_name": "Cylinder",
-              "ai_confidence": 0.4133,
+              "ai_confidence": 0.7833,
               "bbox_xywh_normalized": [0.7622, 0.4993, 0.0218, 0.0275],
               "bbox_xyxy_pixel": [961.68, 621.5, 989.54, 656.63]
             }
