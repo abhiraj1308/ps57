@@ -288,7 +288,12 @@ function App() {
               <span className={apiOnline ? "statusDot online" : "statusDot offline"} />
               {apiOnline ? "API ONLINE" : "SERVER SLEEPING"}
             </div>
-            <button className="refreshButton" onClick={fetchData}>↻ Refresh</button>
+            <button className="refreshButton" onClick={async (e) => {
+              const btn = e.currentTarget;
+              btn.textContent = "↻ Refreshing...";
+              await fetchData();
+              btn.textContent = "↻ Refresh";
+            }}>↻ Refresh</button>
             <button className="primaryButton" onClick={() => setCurrentView('sonar')}>+ New Upload</button>
           </div>
         </header>
