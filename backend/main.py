@@ -200,11 +200,13 @@ async def analyze_sss(
     destination.write_bytes(contents)
 
     # 1. Mock Pre-processing & AI/ML
-    sample_json_path = PROJECT_ROOT / "datasets" / "sample_ai_output.json"
+    sample_json_path = BACKEND_DIR / "mock_data.json"
     ai_json_output = {}
     if sample_json_path.exists():
         with open(sample_json_path, "r") as f:
             ai_json_output = json.load(f)
+    else:
+        print(f"ERROR: Could not find {sample_json_path}")
 
     # 2. DIE Engine
     final_detections = filter_and_refine_detections(ai_json_output)

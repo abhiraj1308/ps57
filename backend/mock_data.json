@@ -1,0 +1,208 @@
+{
+  "pipeline_version": "stage2_integrated_v1",
+  "metadata": {
+    "total_images": 10,
+    "images_processed": 10,
+    "failed_images_count": 0,
+    "source": "D:\\Faizan\\Projects\\Underwater Marine Debris and Anomaly Detection System\\demo_inputs",
+    "device": "cpu",
+    "generated_at": "2026-09-10T12:32:27.441465+00:00",
+    "models": {
+      "crab_pot": {
+        "model_file": "crab_pot_yolo11s_832_best.pt",
+        "model_version": "yolo11s_crab_pot_832_v1",
+        "task": "detection",
+        "confidence_threshold": 0.15
+      },
+      "cylinder": {
+        "model_file": "Cylinder.pt",
+        "model_version": "cylinder_yolo_v1",
+        "task": "detection",
+        "confidence_threshold": 0.25
+      },
+      "pipeline": {
+        "model_file": "pipeline_yolo26n.pt",
+        "model_version": "pipeline_yolo26n_v1",
+        "task": "detection",
+        "confidence_threshold": 0.25
+      },
+      "seafloor": {
+        "model_file": "PS57_Natural_Seafloor_UNet_best.pt",
+        "model_version": "seafloor_unet_ts_v1",
+        "task": "segmentation",
+        "confidence_threshold": null
+      }
+    }
+  },
+  "failed_images": [],
+  "frames": [
+    {
+      "frame_id": "2021_09_29_exp1_0115_bmp.rf.66bd137a784b21234a1b63f75630ca12",
+      "image_width": 1280,
+      "image_height": 1280,
+      "models": {
+        "crab_pot": {
+          "frame_id": "2021_09_29_exp1_0115_bmp.rf.66bd137a784b21234a1b63f75630ca12",
+          "model_version": "yolo11s_crab_pot_832_v1",
+          "image_width": 1280,
+          "image_height": 1280,
+          "inference_latency_ms": 269.83,
+          "detections": [
+            {
+              "detection_id": "2021_09_29_exp1_0115_bmp.rf.66bd137a784b21234a1b63f75630ca12_det_001",
+              "class_id": 0,
+              "class_name": "Crab-Pot",
+              "ai_confidence": 0.1505,
+              "bbox_xywh_normalized": [
+                0.2474,
+                0.7472,
+                0.0267,
+                0.0242
+              ],
+              "bbox_xyxy_pixel": [
+                299.58,
+                940.96,
+                333.79,
+                971.97
+              ]
+            }
+          ]
+        },
+        "cylinder": {
+          "frame_id": "2021_09_29_exp1_0115_bmp.rf.66bd137a784b21234a1b63f75630ca12",
+          "model_version": "cylinder_yolo_v1",
+          "image_width": 1280,
+          "image_height": 1280,
+          "inference_latency_ms": 69.2,
+          "detections": []
+        },
+        "pipeline": {
+          "frame_id": "2021_09_29_exp1_0115_bmp.rf.66bd137a784b21234a1b63f75630ca12",
+          "model_version": "pipeline_yolo26n_v1",
+          "image_width": 1280,
+          "image_height": 1280,
+          "inference_latency_ms": 53.37,
+          "detections": []
+        },
+        "seafloor": {
+          "frame_id": "2021_09_29_exp1_0115_bmp.rf.66bd137a784b21234a1b63f75630ca12",
+          "model_version": "seafloor_unet_ts_v1",
+          "image_width": 1280,
+          "image_height": 1280,
+          "inference_latency_ms": 119.55,
+          "segmentation": {
+            "model_input_shape": [
+              1,
+              1,
+              64,
+              256
+            ],
+            "mask_shape": [
+              64,
+              256
+            ],
+            "num_classes": 3,
+            "class_names": {
+              "0": "rock",
+              "1": "sand",
+              "2": "others"
+            },
+            "class_distribution": {
+              "rock": {
+                "class_id": 0,
+                "pixel_count": 13081,
+                "area_percentage": 79.84,
+                "mean_softmax_probability": 0.9041
+              },
+              "sand": {
+                "class_id": 1,
+                "pixel_count": 2989,
+                "area_percentage": 18.24,
+                "mean_softmax_probability": 0.8367
+              },
+              "others": {
+                "class_id": 2,
+                "pixel_count": 314,
+                "area_percentage": 1.92,
+                "mean_softmax_probability": 0.6588
+              }
+            },
+            "polygons": [
+              {
+                "class_id": 0,
+                "class_name": "rock",
+                "area_pixels": 6353.5,
+                "contour_points_count": 132,
+                "polygon_normalized": [
+                  [0.6406, 0.0], [0.6406, 0.0312], [0.6445, 0.0469], [0.6406, 0.0625],
+                  [0.9961, 0.9844], [0.9961, 0.0], [0.7656, 0.0], [0.7695, 0.0]
+                ]
+              },
+              {
+                "class_id": 1,
+                "class_name": "sand",
+                "area_pixels": 2777.0,
+                "contour_points_count": 157,
+                "polygon_normalized": [
+                  [0.3672, 0.0], [0.3672, 0.0156], [0.3711, 0.0156], [0.375, 0.0312],
+                  [0.6367, 0.0469], [0.6367, 0.0312], [0.6367, 0.0]
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "frame_id": "2021_09_29_exp1_0121_bmp.rf.2b63cc5a000fd8ffd55947ebdd04f8b8",
+      "image_width": 1280,
+      "image_height": 1280,
+      "models": {
+        "crab_pot": {
+          "frame_id": "2021_09_29_exp1_0121_bmp.rf.2b63cc5a000fd8ffd55947ebdd04f8b8",
+          "model_version": "yolo11s_crab_pot_832_v1",
+          "image_width": 1280,
+          "image_height": 1280,
+          "inference_latency_ms": 155.13,
+          "detections": []
+        },
+        "cylinder": {
+          "frame_id": "2021_09_29_exp1_0121_bmp.rf.2b63cc5a000fd8ffd55947ebdd04f8b8",
+          "model_version": "cylinder_yolo_v1",
+          "image_width": 1280,
+          "image_height": 1280,
+          "inference_latency_ms": 42.55,
+          "detections": [
+            {
+              "detection_id": "2021_09_29_exp1_0121_bmp.rf.2b63cc5a000fd8ffd55947ebdd04f8b8_det_001",
+              "class_id": 0,
+              "class_name": "Cylinder",
+              "ai_confidence": 0.4133,
+              "bbox_xywh_normalized": [0.7622, 0.4993, 0.0218, 0.0275],
+              "bbox_xyxy_pixel": [961.68, 621.5, 989.54, 656.63]
+            }
+          ]
+        },
+        "pipeline": {
+          "frame_id": "2021_09_29_exp1_0121_bmp.rf.2b63cc5a000fd8ffd55947ebdd04f8b8",
+          "model_version": "pipeline_yolo26n_v1",
+          "image_width": 1280,
+          "image_height": 1280,
+          "inference_latency_ms": 42.33,
+          "detections": []
+        },
+        "seafloor": {
+          "segmentation": {
+            "class_names": {"0": "rock", "1": "sand", "2": "others"},
+            "polygons": [
+              {
+                "class_name": "rock",
+                "polygon_normalized": [[0.5664, 0.125], [0.5586, 0.1562]]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
