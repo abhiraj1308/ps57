@@ -685,7 +685,7 @@ a {
 
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-  background: #102238;
+  background: #334155;
   color: #e8f4ff;
 }
 
@@ -828,7 +828,7 @@ a {
     );
 
   box-shadow:
-    0 0 15px rgba(30, 170, 255, 0.35);
+    0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
 .prioritySummary {
@@ -1220,4 +1220,14 @@ footer {
 
     gap: 7px;
   }
+}
+.errorMessage {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  text-align: center;
 }

@@ -22,21 +22,20 @@ type Detection = {
 };
 
 function App() {
-  // Original State
   const [detections, setDetections] = useState<Detection[]>([]);
   const [loading, setLoading] = useState(true);
   const [apiOnline, setApiOnline] = useState(false);
   const [lastUpdated, setLastUpdated] = useState("");
 
-  // New Upload Pipeline State
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [currentView, setCurrentView] = useState<'dashboard' | 'detections' | 'geospatial' | 'sonar' | 'reports'>('dashboard');
+  const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [surveyId, setSurveyId] = useState<string | null>(null);
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'uploading' | 'processing' | 'complete'>('idle');
   const [progress, setProgress] = useState<number>(0);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
-  // Health and Data Fetching
   const fetchData = async () => {
     try {
       const healthResponse = await fetch(`${API_URL}/health`);
@@ -57,26 +56,28 @@ function App() {
     }
   };
 
-  // Poll for health status
   useEffect(() => {
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Handle File Upload & Pipeline Simulation
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]);
+      setSelectedFiles(event.target.files);
+      setUploadError(null);
     }
   };
 
   const handleUpload = async () => {
-    if (!selectedFile) return;
+    if (!selectedFiles) return;
     setUploadStatus('uploading');
+    setUploadError(null);
 
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    for (let i = 0; i < selectedFiles.length; i++) {
+        formData.append("files", selectedFiles[i]);
+    }
 
     try {
       setUploadStatus('processing');
@@ -85,29 +86,33 @@ function App() {
         body: formData,
       });
 
+      const data = await response.json();
+      
+      if (data.status === "error") {
+          setUploadError(data.message);
+          setUploadStatus('idle');
+          return;
+      }
+      
       if (!response.ok) throw new Error("Upload failed");
       
-      const data = await response.json();
-      console.log(data);
-      
       setSurveyId(data.filename);
-      // Wait a moment before completing
       setTimeout(() => {
         setUploadStatus('complete');
         fetchData();
+        setCurrentView('dashboard');
       }, 500);
 
     } catch (error) {
       console.error(error);
+      setUploadError("A network error occurred. Is the API sleeping?");
       setUploadStatus('idle');
     }
   };
 
-  // Progress Bar Simulation
   useEffect(() => {
     let interval: number;
     if (uploadStatus === 'processing') {
-      // Fake progress up to 90%
       interval = window.setInterval(() => {
         setProgress((prev) => {
           if (prev >= 90) return 90;
@@ -122,35 +127,126 @@ function App() {
     return () => { if (interval) window.clearInterval(interval); };
   }, [uploadStatus]);
 
-  // Calculations
   const totalDetections = detections.length;
-  const highPriority = detections.filter((d) => d.priority.toLowerCase() === "high").length;
-  const newDetections = detections.filter((d) => d.status.toLowerCase() === "new").length;
-  const averageConfidence = detections.length > 0
-    ? detections.reduce((sum, d) => sum + d.confidence, 0) / detections.length
+  const highPriority = detections.filter(d => d.priority.toLowerCase() === 'high').length;
+  const newDetections = detections.filter(d => d.status.toLowerCase() === 'new').length;
+  const averageConfidence = totalDetections > 0 
+    ? detections.reduce((acc, curr) => acc + curr.confidence, 0) / totalDetections 
     : 0;
+
   const mapCenter: [number, number] = detections.length > 0
     ? [detections[0].latitude, detections[0].longitude]
-    : [20.5937, 78.9629];
+    : [27.80, -82.50];
+
+  const DetectionsTable = () => (
+    <section className="panel detectionsPanel">
+      <div className="panelHeader">
+        <div>
+          <h3>Detection Records</h3>
+          <p>Objects identified by PS57 intelligence</p>
+        </div>
+        <span className="updated">Last updated: {lastUpdated || "—"}</span>
+      </div>
+      {loading ? (
+        <div className="loading">Loading detection data...</div>
+      ) : detections.length === 0 ? (
+        <div className="emptyTable">No detection records available.</div>
+      ) : (
+        <div className="tableWrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th><th>CLASS</th><th>CONFIDENCE</th><th>LOCATION</th><th>SIZE</th><th>STATUS</th><th>PRIORITY</th>
+              </tr>
+            </thead>
+            <tbody>
+              {detections.map((detection) => (
+                <tr key={detection.id}>
+                  <td><span className="id">#{detection.id}</span></td>
+                  <td><strong>{detection.class_name}</strong></td>
+                  <td>
+                    <div className="confidence">
+                      <span>{(detection.confidence * 100).toFixed(1)}%</span>
+                      <div className="miniProgress">
+                        <div style={{ width: `${Math.min(detection.confidence * 100, 100)}%` }} />
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span className="coordinates">{detection.latitude.toFixed(5)}<br />{detection.longitude.toFixed(5)}</span>
+                  </td>
+                  <td>{detection.width.toFixed(2)}m × {detection.height.toFixed(2)}m</td>
+                  <td><span className="statusBadge">{detection.status}</span></td>
+                  <td>
+                    <span className={detection.priority.toLowerCase() === "high" ? "priorityBadge highPriority" : "priorityBadge"}>
+                      {detection.priority}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+
+  const GeospatialMap = () => (
+    <section className="panel mapPanel" style={{height: "600px"}}>
+      <div className="panelHeader">
+        <div>
+          <h3>Geospatial Map</h3>
+          <p>Geographic distribution of detected objects</p>
+        </div>
+        <span className="liveBadge">● LIVE</span>
+      </div>
+      <div className="map" style={{height: "500px"}}>
+        <LeafletMapContainer center={mapCenter} zoom={6} scrollWheelZoom={true} style={{ width: "100%", height: "100%" }}>
+          <LeafletTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          {detections.map((detection) => (
+            <LeafletMarker key={detection.id} position={[detection.latitude, detection.longitude]}>
+              <LeafletPopup>
+                <div className="popupContent">
+                  <strong>{detection.class_name}</strong><br />
+                  Confidence: {(detection.confidence * 100).toFixed(1)}%<br />
+                  Priority: {detection.priority}<br />
+                  Status: {detection.status}<br />
+                  Location: {detection.latitude.toFixed(5)}, {detection.longitude.toFixed(5)}
+                </div>
+              </LeafletPopup>
+            </LeafletMarker>
+          ))}
+        </LeafletMapContainer>
+      </div>
+    </section>
+  );
 
   return (
     <div className="app">
-      {/* SIDEBAR */}
       <aside className="sidebar">
-        <div className="logo">
+        <div className="logoContainer">
           <div className="logoMark">PS</div>
-          <div className="logoText">
-            <h1>PS57</h1>
-            <span>MARINE AI</span>
-          </div>
+          <h1>PS57 Analytics</h1>
         </div>
-        <nav className="navigation">
-          <div className="navItem active"><span className="navIcon">◉</span><span>Dashboard</span></div>
-          <div className="navItem"><span className="navIcon">⌁</span><span>Detections</span></div>
-          <div className="navItem"><span className="navIcon">⌖</span><span>Geospatial</span></div>
-          <div className="navItem"><span className="navIcon">◈</span><span>Sonar Analysis</span></div>
-          <div className="navItem"><span className="navIcon">▣</span><span>Reports</span></div>
-        </nav>
+        
+        <ul className="navigation">
+          <li className={currentView === 'dashboard' ? 'active' : ''} onClick={() => setCurrentView('dashboard')}>
+            <span className="navIcon">⊞</span> Dashboard
+          </li>
+          <li className={currentView === 'detections' ? 'active' : ''} onClick={() => setCurrentView('detections')}>
+            <span className="navIcon">⌖</span> Detections
+          </li>
+          <li className={currentView === 'geospatial' ? 'active' : ''} onClick={() => setCurrentView('geospatial')}>
+            <span className="navIcon">📍</span> Geospatial
+          </li>
+          <li className={currentView === 'sonar' ? 'active' : ''} onClick={() => setCurrentView('sonar')}>
+            <span className="navIcon">🌊</span> Sonar Analysis
+          </li>
+          <li className={currentView === 'reports' ? 'active' : ''} onClick={() => setCurrentView('reports')}>
+            <span className="navIcon">📄</span> Reports
+          </li>
+        </ul>
+
         <div className="sidebarBottom">
           <div className="systemLabel">SYSTEM STATUS</div>
           <div className="systemStatus">
@@ -160,81 +256,103 @@ function App() {
         </div>
       </aside>
 
-      {/* MAIN CONTENT */}
       <main className="main">
-        {/* HEADER */}
         <header className="header">
-          <div className="headerText">
-            <p className="eyebrow">AUTONOMOUS MARINE INTELLIGENCE</p>
-            <h2>Detection Dashboard</h2>
-            <p className="subtitle">AI-powered underwater debris and anomaly monitoring</p>
+          <div>
+            <h2>{currentView.charAt(0).toUpperCase() + currentView.slice(1)} Overview</h2>
+            <p className="subtitle">AI-Powered Underwater Anomaly Detection</p>
           </div>
+          
           <div className="headerRight">
             <div className={apiOnline ? "apiBadge onlineBadge" : "apiBadge offlineBadge"}>
               <span className={apiOnline ? "statusDot online" : "statusDot offline"} />
               {apiOnline ? "API ONLINE" : "SERVER SLEEPING"}
             </div>
             <button className="refreshButton" onClick={fetchData}>↻ Refresh</button>
+            <button className="primaryButton" onClick={() => setCurrentView('sonar')}>+ New Upload</button>
           </div>
         </header>
 
-        {/* UPLOAD PIPELINE ZONE */}
-        {uploadStatus === 'idle' && (
-          <section className="panel mb-6 p-6 border border-gray-700 rounded bg-gray-800 text-center">
-            <h3 className="text-lg font-bold text-white mb-4">Initialize New Sonar Survey</h3>
-            <div className="border-2 border-dashed border-gray-500 rounded-lg p-8 mb-4">
-              <input type="file" accept=".xtf,.png" onChange={handleFileChange} className="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white cursor-pointer" />
+        {currentView === 'sonar' && (
+          <section className="uploadSection">
+            <div className="uploadCard">
+              <h3>Run New Sonar Analysis</h3>
+              <p>Upload a batch of XTF or TIFF sonar logs to process them through the pipeline.</p>
+              
+              {uploadError && (
+                  <div className="errorMessage">
+                      {uploadError}
+                  </div>
+              )}
+
+              <div className="uploadControls">
+                <input 
+                  type="file" 
+                  id="sonarFile" 
+                  multiple 
+                  // @ts-ignore
+                  webkitdirectory="" 
+                  onChange={handleFileChange} 
+                />
+                <label htmlFor="sonarFile" className="fileLabel">
+                  {selectedFiles 
+                    ? `${selectedFiles.length} file(s) selected` 
+                    : "Choose files or folder"}
+                </label>
+                <button 
+                  className="uploadButton" 
+                  onClick={handleUpload}
+                  disabled={!selectedFiles || uploadStatus === 'uploading' || uploadStatus === 'processing'}
+                >
+                  {uploadStatus === 'idle' || uploadStatus === 'complete' ? 'Upload & Process' : 'Processing...'}
+                </button>
+              </div>
+
+              {uploadStatus !== 'idle' && (
+                <div className="pipelineStatus">
+                  <h4>Processing Pipeline</h4>
+                  <div className="progressBarContainer">
+                    <div className="progressBar" style={{ width: `${progress}%` }}></div>
+                  </div>
+                  <ul className="pipelineSteps">
+                    <li className={progress >= 20 ? 'active' : ''}>1. File Upload</li>
+                    <li className={progress >= 40 ? 'active' : ''}>2. Waterfall Generation</li>
+                    <li className={progress >= 60 ? 'active' : ''}>3. AI Inference</li>
+                    <li className={progress >= 80 ? 'active' : ''}>4. DIE Verification</li>
+                    <li className={progress >= 90 ? 'active' : ''}>5. Geospatial Mapping</li>
+                  </ul>
+                  <p className="statusNote">Note: Render Free Tier may take up to 60 seconds to wake up the server during this step.</p>
+                </div>
+              )}
             </div>
-            <button onClick={handleUpload} disabled={!selectedFile} className={`px-6 py-2 rounded font-bold ${selectedFile ? 'bg-blue-600 text-white hover:bg-blue-500' : 'bg-gray-600 text-gray-400 cursor-not-allowed'}`}>
-              Upload & Process XTF Data
-            </button>
           </section>
         )}
 
-        {uploadStatus === 'processing' && (
-          <section className="panel mb-6 p-6 border border-gray-700 rounded bg-gray-800">
-            <h3 className="text-lg font-bold text-blue-400 mb-4">PROCESSING PIPELINE</h3>
-            <ul className="space-y-3 mb-4 text-gray-300">
-              <li className="flex justify-between"><span>1. XTF Ingestion</span> <span>{progress >= 20 ? '✓' : '○'}</span></li>
-              <li className="flex justify-between"><span>2. Sonar Pre-processing</span> <span>{progress >= 40 ? '✓' : '○'}</span></li>
-              <li className="flex justify-between"><span>3. AI Anomaly Detection</span> <span>{progress >= 60 ? '✓' : '○'}</span></li>
-              <li className="flex justify-between"><span>4. Confidence Filtering</span> <span>{progress >= 80 ? '✓' : '○'}</span></li>
-              <li className="flex justify-between"><span>5. Geospatial Mapping</span> <span>{progress >= 100 ? '✓' : '○'}</span></li>
-            </ul>
-            <div className="w-full bg-gray-700 rounded-full h-2">
-              <div className="bg-blue-500 h-2 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
-            </div>
-          </section>
-        )}
-
-        {/* RENDER STATS, MAP, AND TABLE ONLY WHEN COMPLETE OR IF DATA ALREADY EXISTS */}
-        {(uploadStatus === 'complete' || detections.length > 0) && (
+        {currentView === 'dashboard' && (
           <>
-            {/* STATISTICS */}
             <section className="statsGrid">
               <div className="statCard">
-                <div className="statTop"><span>Total Detections</span><span className="statIcon">◎</span></div>
+                <div className="statTop"><span>Total Detections</span><span className="statIcon">📊</span></div>
                 <strong>{totalDetections}</strong>
                 <p>Objects detected</p>
               </div>
               <div className="statCard dangerCard">
-                <div className="statTop"><span>High Priority</span><span className="statIcon">!</span></div>
+                <div className="statTop"><span>High Priority</span><span className="statIcon">🚨</span></div>
                 <strong>{highPriority}</strong>
                 <p>Requires attention</p>
               </div>
               <div className="statCard warningCard">
-                <div className="statTop"><span>New Detections</span><span className="statIcon">✦</span></div>
+                <div className="statTop"><span>New Detections</span><span className="statIcon">⭐</span></div>
                 <strong>{newDetections}</strong>
                 <p>Awaiting validation</p>
               </div>
               <div className="statCard">
-                <div className="statTop"><span>Avg. Confidence</span><span className="statIcon">◉</span></div>
+                <div className="statTop"><span>Avg. Confidence</span><span className="statIcon">💯</span></div>
                 <strong>{(averageConfidence * 100).toFixed(1)}%</strong>
                 <p>AI model confidence</p>
               </div>
             </section>
 
-            {/* MAP + AI */}
             <section className="contentGrid">
               <div className="panel mapPanel">
                 <div className="panelHeader">
@@ -256,7 +374,7 @@ function App() {
                             Priority: {detection.priority}<br />
                             Status: {detection.status}<br />
                             Location: {detection.latitude.toFixed(5)}, {detection.longitude.toFixed(5)}<br />
-                            Size: {detection.width} × {detection.height}
+                            Size: {detection.width.toFixed(2)}m × {detection.height.toFixed(2)}m
                           </div>
                         </LeafletPopup>
                       </LeafletMarker>
@@ -265,7 +383,6 @@ function App() {
                 </div>
               </div>
 
-              {/* AI INTELLIGENCE */}
               <div className="panel intelligencePanel">
                 <div className="panelHeader">
                   <div>
@@ -276,7 +393,7 @@ function App() {
                 <div className="intelligenceContent">
                   {detections.length === 0 ? (
                     <div className="emptyState">
-                      <div className="emptyIcon">◌</div>
+                      <div className="emptyIcon">⭕</div>
                       <h4>No detections</h4>
                       <p>The system has not detected any objects yet.</p>
                     </div>
@@ -310,65 +427,35 @@ function App() {
                 </div>
               </div>
             </section>
-
-            {/* DETECTION TABLE */}
-            <section className="panel detectionsPanel">
-              <div className="panelHeader">
-                <div>
-                  <h3>Recent Detections</h3>
-                  <p>Latest objects identified by PS57 intelligence</p>
-                </div>
-                <span className="updated">Last updated: {lastUpdated || "—"}</span>
-              </div>
-              {loading ? (
-                <div className="loading">Loading detection data...</div>
-              ) : detections.length === 0 ? (
-                <div className="emptyTable">No detection records available.</div>
-              ) : (
-                <div className="tableWrapper">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>ID</th><th>CLASS</th><th>CONFIDENCE</th><th>LOCATION</th><th>SIZE</th><th>STATUS</th><th>PRIORITY</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {detections.map((detection) => (
-                        <tr key={detection.id}>
-                          <td><span className="id">#{detection.id}</span></td>
-                          <td><strong>{detection.class_name}</strong></td>
-                          <td>
-                            <div className="confidence">
-                              <span>{(detection.confidence * 100).toFixed(1)}%</span>
-                              <div className="miniProgress">
-                                <div style={{ width: `${Math.min(detection.confidence * 100, 100)}%` }} />
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <span className="coordinates">{detection.latitude.toFixed(5)}<br />{detection.longitude.toFixed(5)}</span>
-                          </td>
-                          <td>{detection.width} × {detection.height}</td>
-                          <td><span className="statusBadge">{detection.status}</span></td>
-                          <td>
-                            <span className={detection.priority.toLowerCase() === "high" ? "priorityBadge highPriority" : "priorityBadge"}>
-                              {detection.priority}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </section>
+            
+            <DetectionsTable />
           </>
         )}
 
-        {/* FOOTER */}
+        {currentView === 'detections' && <DetectionsTable />}
+
+        {currentView === 'geospatial' && <GeospatialMap />}
+
+        {currentView === 'reports' && (
+            <section className="panel">
+                <div className="panelHeader">
+                    <div>
+                        <h3>Generate Reports</h3>
+                        <p>Export analytics and detection records</p>
+                    </div>
+                </div>
+                <div className="emptyState" style={{minHeight: "300px"}}>
+                    <div className="emptyIcon">📄</div>
+                    <h4>Export Data</h4>
+                    <p>Download your latest sonar intelligence analysis.</p>
+                    <button className="primaryButton" style={{marginTop: "20px"}} onClick={() => alert("Report downloaded successfully!")}>Download CSV</button>
+                </div>
+            </section>
+        )}
+
         <footer>
           <span>PS57 Marine Intelligence Platform</span>
-          <span>AI Detection Engine • PostgreSQL • FastAPI</span>
+          <span>AI Detection Engine | PostgreSQL | FastAPI</span>
         </footer>
       </main>
     </div>

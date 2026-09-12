@@ -189,7 +189,16 @@
           "image_width": 1280,
           "image_height": 1280,
           "inference_latency_ms": 42.33,
-          "detections": []
+          "detections": [
+            {
+              "detection_id": "2021_09_29_exp1_0121_bmp.rf.2b63cc5a000fd8ffd55947ebdd04f8b8_det_002",
+              "class_id": 2,
+              "class_name": "Pipeline",
+              "ai_confidence": 0.95,
+              "bbox_xywh_normalized": [0.2, 0.2, 0.1, 0.1],
+              "bbox_xyxy_pixel": [256.0, 256.0, 384.0, 384.0]
+            }
+          ]
         },
         "seafloor": {
           "segmentation": {

@@ -178,26 +178,25 @@ def get_detections(
 
 @app.post("/analyze")
 async def analyze_sss(
-    file: UploadFile = File(...),
+    files: list[UploadFile] = File(...),
     db: Session = Depends(get_db),
 ):
     import json
     import random
     from detection_intelligence.die_engine import filter_and_refine_detections
 
-    if not file.filename:
-        return {"status": "error", "message": "No filename supplied."}
-
     allowed_extensions = {".png", ".jpg", ".jpeg", ".tif", ".tiff", ".xtf"}
-    extension = Path(file.filename).suffix.lower()
+    
+    # 1. Metadata Validation
+    for file in files:
+        if not file.filename:
+            return {"status": "error", "message": "No filename supplied."}
+        extension = Path(file.filename).suffix.lower()
+        if extension not in allowed_extensions:
+            return {"status": "error", "message": f"Invalid input: '{file.filename}' does not contain sonar metadata (Unsupported format). Please upload valid XTF or sonar image files."}
 
-    if extension not in allowed_extensions:
-        return {"status": "error", "message": "Unsupported file type."}
-
-    safe_filename = f"{uuid.uuid4().hex}{extension}"
-    destination = UPLOAD_DIR / safe_filename
-    contents = await file.read()
-    destination.write_bytes(contents)
+    total_contents_size = 0
+    all_final_detections = []
 
     # 1. Mock Pre-processing & AI/ML
     sample_json_path = BACKEND_DIR / "mock_data.json"
@@ -208,36 +207,50 @@ async def analyze_sss(
     else:
         print(f"ERROR: Could not find {sample_json_path}")
 
-    # 2. DIE Engine
-    final_detections = filter_and_refine_detections(ai_json_output)
+    # Process each file to simulate batch processing and moving vessel
+    for idx, file in enumerate(files):
+        extension = Path(file.filename).suffix.lower()
+        safe_filename = f"{uuid.uuid4().hex}{extension}"
+        destination = UPLOAD_DIR / safe_filename
+        contents = await file.read()
+        destination.write_bytes(contents)
+        total_contents_size += len(contents)
 
-    # 3. Geotagging Mock & Persist
-    for detection in final_detections:
-        # Mock coordinates around Florida coast (matching geotagging_system)
-        detection.latitude = 27.80 + (random.random() - 0.5) * 0.01
-        detection.longitude = -82.50 + (random.random() - 0.5) * 0.01
-        
-        # Save to DB
-        record = Detection(
-            class_name=detection.class_name,
-            confidence=float(detection.confidence),
-            latitude=detection.latitude,
-            longitude=detection.longitude,
-            width=float(detection.bbox.width),
-            height=float(detection.bbox.height),
-            status=detection.status or "new",
-            priority=detection.severity or "medium",
-        )
-        db.add(record)
+        # 2. DIE Engine
+        final_detections = filter_and_refine_detections(ai_json_output)
+
+        # 3. Geotagging Mock & Persist
+        # Simulate moving vessel by offsetting base coordinates per file (0.005 degrees ~ 500m)
+        base_lat = 27.80 + (idx * 0.005)
+        base_lon = -82.50 + (idx * 0.005)
+
+        for detection in final_detections:
+            # Spread detections slightly around the file's base location
+            detection.latitude = base_lat + (random.random() - 0.5) * 0.002
+            detection.longitude = base_lon + (random.random() - 0.5) * 0.002
+            
+            # Save to DB
+            record = Detection(
+                class_name=detection.class_name,
+                confidence=float(detection.confidence),
+                latitude=detection.latitude,
+                longitude=detection.longitude,
+                width=float(detection.bbox.width),
+                height=float(detection.bbox.height),
+                status=detection.status or "new",
+                priority=detection.severity or "medium",
+            )
+            db.add(record)
+            all_final_detections.append(detection)
 
     db.commit()
 
     return {
         "status": "accepted",
-        "message": "SSS image processed and detections filtered.",
-        "filename": safe_filename,
-        "original_filename": file.filename,
-        "size_bytes": len(contents),
-        "detections_count": len(final_detections)
+        "message": f"Processed {len(files)} files successfully.",
+        "filename": "batch_upload",
+        "original_filename": f"{len(files)} files",
+        "size_bytes": total_contents_size,
+        "detections_count": len(all_final_detections)
     }
 
