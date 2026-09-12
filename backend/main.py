@@ -213,9 +213,9 @@ async def analyze_sss(
 
     # 3. Geotagging Mock & Persist
     for detection in final_detections:
-        # Mock coordinates around a base location
-        detection.latitude = 19.0760 + (random.random() - 0.5) * 0.01
-        detection.longitude = 72.8777 + (random.random() - 0.5) * 0.01
+        # Mock coordinates around Florida coast (matching geotagging_system)
+        detection.latitude = 27.80 + (random.random() - 0.5) * 0.01
+        detection.longitude = -82.50 + (random.random() - 0.5) * 0.01
         
         # Save to DB
         record = Detection(

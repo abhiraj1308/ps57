@@ -155,7 +155,7 @@ function App() {
           <div className="systemLabel">SYSTEM STATUS</div>
           <div className="systemStatus">
             <span className={apiOnline ? "statusDot online" : "statusDot offline"} />
-            <span>{apiOnline ? "All systems operational" : "API disconnected"}</span>
+            <span style={{fontSize: "0.85rem"}}>{apiOnline ? "All systems operational" : "Server Sleeping (Upload to wake)"}</span>
           </div>
         </div>
       </aside>
@@ -172,7 +172,7 @@ function App() {
           <div className="headerRight">
             <div className={apiOnline ? "apiBadge onlineBadge" : "apiBadge offlineBadge"}>
               <span className={apiOnline ? "statusDot online" : "statusDot offline"} />
-              {apiOnline ? "API ONLINE" : "API OFFLINE"}
+              {apiOnline ? "API ONLINE" : "SERVER SLEEPING"}
             </div>
             <button className="refreshButton" onClick={fetchData}>↻ Refresh</button>
           </div>
